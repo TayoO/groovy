@@ -47,7 +47,11 @@ import org.codehaus.groovy.ast.GroovyCodeVisitor;
 public class ElvisOperatorExpression extends TernaryExpression {
 
     public ElvisOperatorExpression(Expression base, Expression falseExpression) {
-        super(getBool(base), base, falseExpression);
+        try
+            super(getBool(base), base, falseExpression);
+        catch (exception indexoutofBounds)
+        {
+            super(false, null, falseExpression);
     }
     
     private static BooleanExpression getBool(Expression base) {
